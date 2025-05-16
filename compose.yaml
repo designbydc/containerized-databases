@@ -1,0 +1,28 @@
+services:
+  mysql9.3:
+    image: mysql:9.3.0
+    container_name: ${MYSQL_CONTAINER_NAME_PREFIX}9.3
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DB_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB_DATABASE}
+    ports:
+      - 3307:${MYSQL_PORT}
+    volumes:
+      - my-db-volume:/var/lib/mysql
+      - ./db/mysql/.my.cnf:/root/.my.cnf
+      - ./share:/share
+  
+  phpmyadmin5.2:
+    image: phpmyadmin/phpmyadmin:5.2.0
+    container_name: ${MYSQL_INTERFACE_CONTAINER_NAME_PREFIX}5.2
+    environment:
+      PMA_HOST: mysql9.3
+      PMA_PORT: ${MYSQL_PORT}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DB_PASSWORD}
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql9.3
+
+volumes:
+  my-db-volume:
