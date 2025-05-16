@@ -14,5 +14,5 @@ docker exec -i $(getContainerName) mysql \
 docker exec -i $(getContainerName) mysql \
     --defaults-extra-file=${MYSQL_INITDBD_MY_CNF_PATH} \
     -D ${MYSQL_DB_DATABASE} \
-    < ./share/test_country.sql \
+    < ./share/customers.sql \
     2>&1 | tee import.log
