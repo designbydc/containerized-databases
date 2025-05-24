@@ -32,7 +32,7 @@ This opens a terminal connection to the MySQL instance named `mysql9.3`.
 bash scripts/mysql/import.sh mysql9.3
 ```
 
-This script imports some test data from the `test_country.sql` and `test_country.tsv` file into the database.
+This script imports some test data from the `customers.sql` and `customers.csv` file into the database.
 
 ---
 
